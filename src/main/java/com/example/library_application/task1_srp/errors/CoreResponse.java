@@ -1,18 +1,16 @@
 package com.example.library_application.task1_srp.errors;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-public abstract class CoreResponse {
-    private List<CoreError> errors = new ArrayList<>();
+@Data
+public class CoreResponse {
+    private List<CoreError> errors;
 
     public boolean hasErrors() {
         if (errors.isEmpty()) {

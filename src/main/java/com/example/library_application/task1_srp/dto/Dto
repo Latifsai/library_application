@@ -1,0 +1,10 @@
+book dto:
+addBookRequest{
+    String title,
+    String author
+}
+addBookResponse{
+    Integer id,
+    String title,
+    List<CoreError> errors
+}

@@ -1,12 +1,12 @@
-package com.example.library_application.task1_srp.errors;
+package com.example.library_application.task1_srp.dto.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
-public class CoreError {
-    private String message;
+@Data
+public class FindBookDTORequest {
+
 }

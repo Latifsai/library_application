@@ -1,28 +1,25 @@
-package students.LatifSait.extraHwPro.task1_srp.service.util;
+package com.example.library_application.task1_srp.service.util;
 
+import com.example.library_application.task1_srp.dto.book.AddBookRequest;
+import com.example.library_application.task1_srp.dto.book.AddBookResponse;
+import com.example.library_application.task1_srp.entity.Book;
 import org.springframework.stereotype.Component;
-import students.LatifSait.extraHwPro.task1_srp.entity.Book;
-import students.LatifSait.extraHwPro.task1_srp.entity.Reader;
-import students.LatifSait.extraHwPro.task1_srp.entity.ReaderBook;
-
-import java.time.LocalDateTime;
-
 @Component
 public class Convertor {
-    public ReaderBook convertToReadBookTakeBook(Book book, Reader reader) {
-        ReaderBook readerBook = new ReaderBook();
-        readerBook.setBook(book);
-        readerBook.setReader(reader);
-        readerBook.setBookOutDate(LocalDateTime.now());
-        return  readerBook;
+
+    public Book convertRequestToBook(AddBookRequest request) {
+        Book book = new Book();
+        book.setAuthor(request.getAuthor());
+        book.setTitle(request.getTitle());
+        book.setDescription(request.getDescription());
+        book.setPageAmount(request.getPageAmount());
+        return book;
     }
 
-    public ReaderBook convertToReadBookReturnBook(Book book, Reader reader) {
-        ReaderBook readerBook = new ReaderBook();
-        readerBook.setBook(book);
-        readerBook.setReader(reader);
-        readerBook.setBookReturnDate(LocalDateTime.now());
-        return readerBook;
+    public AddBookResponse convertBookToResponse(Book book) {
+        AddBookResponse response = new AddBookResponse();
+        response.setId(book.getId());
+        response.setTitle(book.getTitle());
+        return response;
     }
-
 }

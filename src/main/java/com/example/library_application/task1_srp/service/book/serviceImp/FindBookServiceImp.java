@@ -1,16 +1,13 @@
-package com.example.library_application.task1_srp.service.book;
+package com.example.library_application.task1_srp.service.book.serviceImp;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-
-import java.util.List;
-
 @Component
 @AllArgsConstructor
 @Transactional
-public class FindBookService {
+public class FindBookServiceImp {
 
 
 
