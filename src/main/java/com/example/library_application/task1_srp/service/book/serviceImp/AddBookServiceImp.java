@@ -2,7 +2,7 @@ package com.example.library_application.task1_srp.service.book.serviceImp;
 
 
 import com.example.library_application.task1_srp.dto.book.AddBookRequest;
-import com.example.library_application.task1_srp.dto.book.AddBookResponse;
+import com.example.library_application.task1_srp.dto.book.AddAndFindBookResponse;
 import com.example.library_application.task1_srp.entity.Book;
 import com.example.library_application.task1_srp.repositiry.BookRepository;
 import com.example.library_application.task1_srp.service.book.AddBookService;
@@ -19,7 +19,7 @@ public class AddBookServiceImp implements AddBookService {
     private final BookRepository repository;
     private final Convertor convertor;
     @Override
-    public AddBookResponse execute(AddBookRequest request) {
+    public AddAndFindBookResponse execute(AddBookRequest request) {
         //get book
         Book book = convertor.convertRequestToBook(request);
         //save book

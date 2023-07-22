@@ -1,7 +1,7 @@
 package com.example.library_application.task1_srp.service.util;
 
 import com.example.library_application.task1_srp.dto.book.AddBookRequest;
-import com.example.library_application.task1_srp.dto.book.AddBookResponse;
+import com.example.library_application.task1_srp.dto.book.AddAndFindBookResponse;
 import com.example.library_application.task1_srp.entity.Book;
 import org.springframework.stereotype.Component;
 @Component
@@ -16,10 +16,11 @@ public class Convertor {
         return book;
     }
 
-    public AddBookResponse convertBookToResponse(Book book) {
-        AddBookResponse response = new AddBookResponse();
+    public AddAndFindBookResponse convertBookToResponse(Book book) {
+        AddAndFindBookResponse response = new AddAndFindBookResponse();
         response.setId(book.getId());
         response.setTitle(book.getTitle());
+        response.setAuthor(book.getAuthor());
         return response;
     }
 }

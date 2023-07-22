@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class FindBookDTORequest {
 
+    private String title;
+    private String author;
 }
