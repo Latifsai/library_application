@@ -1,28 +1,10 @@
 package com.example.library_application.task1_srp.service.book;
 
-import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
+import com.example.library_application.task1_srp.dto.book.BookResponse;
+import com.example.library_application.task1_srp.dto.book.BookDTORequest;
+import org.springframework.stereotype.Service;
 
-import org.springframework.stereotype.Component;
-
-
-import java.util.List;
-@Component
-@AllArgsConstructor
-@Transactional
-public class RemoveBookService {
-
-//    @Autowired
-//    private BookRepository database;
-//
-//    public RemoveBookResponse execute(RemoveBookRequest request) {
-//        RemoveBookRequestValidator validator = new RemoveBookRequestValidator();
-//        List<CoreError> errors = validator.validate(request);
-//
-//
-//        if (database.deleteById(request.getIdToRemove())) {
-//            return new RemoveBookResponse(true);
-//        }
-//        return new RemoveBookResponse(errors);
-//    }
+@Service
+public interface RemoveBookService {
+    BookResponse execute(BookDTORequest request);
 }

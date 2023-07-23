@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FindBookDTORequest {
-
+public class BookResponse {
+    private Integer id;
     private String title;
     private String author;
 }

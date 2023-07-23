@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class AddAndFindBookResponse {
-    private Integer id;
+@NoArgsConstructor
+public class UpdateBookDTOResponse {
     private String title;
-    private String author;
+    private Integer pageAmount;
+    private String description;
 }

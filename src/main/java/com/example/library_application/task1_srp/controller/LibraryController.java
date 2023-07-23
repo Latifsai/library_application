@@ -1,12 +1,7 @@
 package com.example.library_application.task1_srp.controller;
 
-import com.example.library_application.task1_srp.dto.book.AddBookRequest;
-import com.example.library_application.task1_srp.dto.book.AddAndFindBookResponse;
-import com.example.library_application.task1_srp.dto.book.FindBookDTORequest;
-import com.example.library_application.task1_srp.dto.book.GetAllBooksResponse;
-import com.example.library_application.task1_srp.service.book.AddBookService;
-import com.example.library_application.task1_srp.service.book.FindBookService;
-import com.example.library_application.task1_srp.service.book.GetAllBooksService;
+import com.example.library_application.task1_srp.dto.book.*;
+import com.example.library_application.task1_srp.service.book.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +14,12 @@ public class LibraryController {
     private final AddBookService addBookService;
     private final GetAllBooksService getAllBooksService;
     private final FindBookService findBookService;
+    private final RemoveBookService removeBookService;
+    private final UpdateService updateService;
 
     @PostMapping
-    public ResponseEntity<AddAndFindBookResponse> addBook(@RequestBody AddBookRequest request) {
-        AddAndFindBookResponse response = addBookService.execute(request);
+    public ResponseEntity<BookResponse> addBook(@RequestBody AddBookRequest request) {
+        BookResponse response = addBookService.execute(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -33,8 +30,21 @@ public class LibraryController {
     }
 
     @GetMapping("/book")
-    public ResponseEntity<AddAndFindBookResponse> findBook(@RequestBody FindBookDTORequest request) {
-        AddAndFindBookResponse response = findBookService.findBookByTitleOrAuthor(request);
+    public ResponseEntity<BookResponse> findBook(@RequestBody BookDTORequest request) {
+        BookResponse response = findBookService.findBookByTitleOrAuthor(request);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
+
+    @DeleteMapping
+    public ResponseEntity<BookResponse> deleteBook(@RequestBody BookDTORequest request) {
+        BookResponse response = removeBookService.execute(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<UpdateBookDTOResponse> updateBook(@RequestBody UpdateBookDTORequest request) {
+        UpdateBookDTOResponse response = updateService.execute(request);
+        return new ResponseEntity<>(response, HttpStatus.UPGRADE_REQUIRED);
+    }
+
 }
