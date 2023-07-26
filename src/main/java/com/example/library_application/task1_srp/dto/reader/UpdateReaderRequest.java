@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class UpdateReaderRequest {
-    private String personalCode;
+    private Integer id;
+    private String personalAdminCode;
     private String forename;
     private String surname;
 }

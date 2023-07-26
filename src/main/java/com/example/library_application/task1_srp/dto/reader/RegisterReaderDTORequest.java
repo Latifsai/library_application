@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class RegisterReaderDTORequest {
+    private String adminCode;
     private String forename;
     private String surname;
 }

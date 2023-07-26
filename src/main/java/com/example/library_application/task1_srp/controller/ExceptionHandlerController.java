@@ -2,8 +2,11 @@ package com.example.library_application.task1_srp.controller;
 
 import com.example.library_application.task1_srp.errors.CoreError;
 import com.example.library_application.task1_srp.errors.CoreResponse;
-import com.example.library_application.task1_srp.errors.exeptions.NotfoundException;
+import com.example.library_application.task1_srp.errors.exeptions.BookTakeException;
+import com.example.library_application.task1_srp.errors.exeptions.NotFoundException;
+import com.example.library_application.task1_srp.errors.exeptions.RightsException;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,8 +28,33 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NotfoundException.class)
-    public ResponseEntity<?> handleException(NotfoundException e) {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> handleException(NotFoundException e) {
+        List<CoreError> errors = List.of(new CoreError(e.getMessage()));
+        CoreResponse response = new CoreResponse(errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<?> handleException(ValidationException e) {
+        List<CoreError> errors = List.of(new CoreError(e.getMessage()));
+        CoreResponse response = new CoreResponse(errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BookTakeException.class)
+    public ResponseEntity<?> handleException(BookTakeException e) {
+        List<CoreError> errors = List.of(new CoreError(e.getMessage()));
+        CoreResponse response = new CoreResponse(errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RightsException.class)
+    public ResponseEntity<?> handleException(RightsException e) {
         List<CoreError> errors = List.of(new CoreError(e.getMessage()));
         CoreResponse response = new CoreResponse(errors);
 

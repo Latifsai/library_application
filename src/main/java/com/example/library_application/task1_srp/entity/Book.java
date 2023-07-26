@@ -1,12 +1,10 @@
 package com.example.library_application.task1_srp.entity;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
 
 @Data
 @Entity
@@ -22,13 +20,13 @@ public class Book {
 
     @Column(name = "title")
     @NotNull(message = "Title must not be null!")
-    @NotBlank
+    @NotBlank(message = "Title must not be blank!")
     @NotEmpty(message = "Title must not be empty!")
     private String title;
 
     @Column(name = "author")
     @NotNull(message = "Author must not be null!")
-    @NotBlank
+    @NotBlank(message = "Author must not be blank!")
     @NotEmpty(message = "Author must not be empty!")
     private String author;
 

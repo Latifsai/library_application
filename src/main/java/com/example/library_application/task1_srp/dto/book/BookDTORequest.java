@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class BookDTORequest {
+    String personalCode;
     private String title;
     private String author;
 }

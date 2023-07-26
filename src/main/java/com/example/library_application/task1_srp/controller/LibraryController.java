@@ -1,50 +1,50 @@
 package com.example.library_application.task1_srp.controller;
 
-import com.example.library_application.task1_srp.dto.book.*;
-import com.example.library_application.task1_srp.service.book.*;
-import lombok.AllArgsConstructor;
+import com.example.library_application.task1_srp.dto.readerBook.*;
+import com.example.library_application.task1_srp.service.AllService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/library")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LibraryController {
-    private final AddBookService addBookService;
-    private final GetAllBooksService getAllBooksService;
-    private final FindBookService findBookService;
-    private final RemoveBookService removeBookService;
-    private final UpdateService updateService;
-
+    private final AllService<TakeBookDTOResponse, TakeAndReturnBookDTORequest> takeBookService;
+    private final AllService<ReturnBookDTOResponse, TakeAndReturnBookDTORequest> returnBookService;
+    private final AllService<SearchLibraryControllerResponse, DeleteAndSearchControllerRequest> searchLibraryControllerService;
+    private final AllService<GetAllLibraryControllersResponse, GetLibraryControllerRequest> getAllLibraryControllersService;
+    private final AllService<DeleteControllerResponse, DeleteAndSearchControllerRequest> delete;
     @PostMapping
-    public ResponseEntity<BookResponse> addBook(@RequestBody AddBookRequest request) {
-        BookResponse response = addBookService.execute(request);
+    public ResponseEntity<TakeBookDTOResponse> takeBook(@RequestBody TakeAndReturnBookDTORequest request) {
+        TakeBookDTOResponse response = takeBookService.execute(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<ReturnBookDTOResponse> returnBook(@RequestBody TakeAndReturnBookDTORequest request) {
+        ReturnBookDTOResponse response = returnBookService.execute(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/controller")
+    public ResponseEntity<SearchLibraryControllerResponse> findByIdController(@RequestBody DeleteAndSearchControllerRequest request) {
+        SearchLibraryControllerResponse response = searchLibraryControllerService.execute(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<GetAllBooksResponse> getAllBooks() {
-        GetAllBooksResponse response = getAllBooksService.execute();
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
-    }
-
-    @GetMapping("/book")
-    public ResponseEntity<BookResponse> findBook(@RequestBody BookDTORequest request) {
-        BookResponse response = findBookService.findBookByTitleOrAuthor(request);
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
-    }
-
-    @DeleteMapping
-    public ResponseEntity<BookResponse> deleteBook(@RequestBody BookDTORequest request) {
-        BookResponse response = removeBookService.execute(request);
+    public ResponseEntity<GetAllLibraryControllersResponse> getAllControllers(@RequestBody GetLibraryControllerRequest request) {
+        GetAllLibraryControllersResponse response = getAllLibraryControllersService.execute(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<UpdateBookDTOResponse> updateBook(@RequestBody UpdateBookDTORequest request) {
-        UpdateBookDTOResponse response = updateService.execute(request);
-        return new ResponseEntity<>(response, HttpStatus.UPGRADE_REQUIRED);
+    @DeleteMapping()
+    public ResponseEntity<DeleteControllerResponse> DeleteBook(@RequestBody DeleteAndSearchControllerRequest request) {
+        DeleteControllerResponse response = delete.execute(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 }

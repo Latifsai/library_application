@@ -1,21 +1,23 @@
 package com.example.library_application.task1_srp.controller;
 
 import com.example.library_application.task1_srp.dto.reader.*;
-import com.example.library_application.task1_srp.service.reader.*;
-import lombok.AllArgsConstructor;
+import com.example.library_application.task1_srp.service.AllService;
+import com.example.library_application.task1_srp.service.reader.FindReaderServiceImp;
+import com.example.library_application.task1_srp.service.reader.GetAllReadersServiceImp;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/readers")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReaderController {
-    private final RegisterReaderService registerService;
-    private final GetAllReaderService getAllReaderService;
-    private final FindReaderService findReaderService;
-    private final DeleteReaderService deleteReaderService;
-    private final UpdateReaderService updateReaderService;
+    private final AllService<RegisterReaderDTOResponse, RegisterReaderDTORequest> registerService;
+    private final GetAllReadersServiceImp getAllReaderService;
+    private final FindReaderServiceImp findReaderService;
+    private final AllService<ReaderResponse, ReaderRequest> deleteReaderService;
+    private final AllService<UpdateReaderResponse, UpdateReaderRequest> updateReaderService;
 
     @PostMapping
     public ResponseEntity<RegisterReaderDTOResponse> registerReader(@RequestBody RegisterReaderDTORequest request) {
@@ -24,15 +26,27 @@ public class ReaderController {
     }
 
     @GetMapping
-    public ResponseEntity<GetAllReaderResponse> getAllReaders() {
-        GetAllReaderResponse response = getAllReaderService.execute();
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
+    public ResponseEntity<?> getAllReaders(@RequestBody ReaderRequest request) {
+        if (request.getPersonalCode().contains("adm")){
+            var response = getAllReaderService.execute(request);
+            return new ResponseEntity<>(response, HttpStatus.FOUND);
+        }   else {
+            var response = getAllReaderService.executeForReader(request);
+            return new ResponseEntity<>(response, HttpStatus.FOUND);
+        }
+
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ReaderResponse> findReader(@PathVariable Integer id) {
-        ReaderResponse response = findReaderService.execute(id);
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
+    @GetMapping("/reader")
+    public ResponseEntity<?> findReader(@RequestBody FindReaderRequest request) {
+        if (request.getCode().contains("adm")) {
+            var response = findReaderService.executeForAdmin(request);
+            return new ResponseEntity<>(response, HttpStatus.FOUND);
+        } else {
+            var response = findReaderService.execute(request);
+            return new ResponseEntity<>(response, HttpStatus.FOUND);
+        }
+
     }
 
     @DeleteMapping
@@ -46,7 +60,4 @@ public class ReaderController {
         UpdateReaderResponse response = updateReaderService.execute(request);
         return new ResponseEntity<>(response, HttpStatus.UPGRADE_REQUIRED);
     }
-
-
-
 }

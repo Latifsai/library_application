@@ -6,8 +6,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-
-
 @Entity
 @Table(name = "readers")
 @Data
@@ -18,18 +16,18 @@ public class Reader {
     private Integer id;
     @Column(name = "forename")
     @NotNull(message = "Name must not be null!")
-    @NotEmpty
-    @NotBlank
+    @NotEmpty(message = "Name must not be empty!")
+    @NotBlank(message = "Name must not be blank!")
     private String forename;
     @Column(name = "surname")
     @NotNull(message = "surname must not be null!")
-    @NotEmpty
-    @NotBlank
+    @NotEmpty(message = "Surname must not be empty!")
+    @NotBlank(message = "Surname must not be blank!")
     private String surname;
     @Column(name = "personal_code")
-    @NotNull(message = "personalCode must not be null!")
-    @NotEmpty
-    @NotBlank
+    @NotNull(message = "PersonalCode must not be null!")
+    @NotEmpty(message = "PersonalCode must not be empty!")
+    @NotBlank(message = "PersonalCode must not be blank!")
     private String personalCode;
 
 }
