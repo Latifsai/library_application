@@ -1,0 +1,40 @@
+package com.example.library_application.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import lombok.*;
+
+@Data
+@Entity
+@Table(name = "books")
+@NoArgsConstructor
+@AllArgsConstructor
+public class Book {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "title")
+    @NotNull(message = "Title must not be null!")
+    @NotBlank(message = "Title must not be blank!")
+    @NotEmpty(message = "Title must not be empty!")
+    private String title;
+
+    @Column(name = "author")
+    @NotNull(message = "Author must not be null!")
+    @NotBlank(message = "Author must not be blank!")
+    @NotEmpty(message = "Author must not be empty!")
+    private String author;
+
+    @Column(name = "page_amount")
+    @PositiveOrZero
+    private Integer pageAmount;
+
+    @Column(name = "description")
+    private String description;
+}
