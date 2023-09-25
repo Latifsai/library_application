@@ -1,9 +1,7 @@
 package com.example.library_application.service.admin;
 
 import com.example.library_application.dto.admin.GetAllAdminsRequest;
-import com.example.library_application.repositiry.AdminRepository;
 import com.example.library_application.dto.admin.GetAllAdminsResponse;
-import com.example.library_application.service.AllService;
 import com.example.library_application.validation.Validator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

@@ -2,8 +2,6 @@ package com.example.library_application.service.reader;
 
 import com.example.library_application.dto.reader.RegisterReaderDTORequest;
 import com.example.library_application.dto.reader.RegisterReaderDTOResponse;
-import com.example.library_application.repositiry.ReaderRepository;
-import com.example.library_application.service.AllService;
 import com.example.library_application.service.util.Convertor;
 import com.example.library_application.validation.Validator;
 import jakarta.transaction.Transactional;

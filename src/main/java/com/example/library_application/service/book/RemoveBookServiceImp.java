@@ -5,7 +5,6 @@ import com.example.library_application.repositiry.BookRepository;
 import com.example.library_application.dto.book.BookDTORequest;
 import com.example.library_application.dto.book.DeleteBookResponse;
 import com.example.library_application.errors.Message;
-import com.example.library_application.service.AllService;
 import com.example.library_application.validation.Validator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

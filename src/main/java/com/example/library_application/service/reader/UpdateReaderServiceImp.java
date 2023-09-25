@@ -2,8 +2,6 @@ package com.example.library_application.service.reader;
 
 import com.example.library_application.dto.reader.UpdateReaderResponse;
 import com.example.library_application.errors.exeptions.NotFoundException;
-import com.example.library_application.repositiry.ReaderRepository;
-import com.example.library_application.service.AllService;
 import com.example.library_application.service.util.Convertor;
 import com.example.library_application.dto.reader.UpdateReaderRequest;
 import com.example.library_application.errors.Message;

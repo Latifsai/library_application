@@ -1,6 +1,6 @@
-package com.example.library_application.task1_srp.repositiry;
+package com.example.library_application.repositiry;
 
-import com.example.library_application.task1_srp.entity.Author;
+import com.example.library_application.entity.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

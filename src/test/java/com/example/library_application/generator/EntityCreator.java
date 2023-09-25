@@ -1,9 +1,6 @@
 package com.example.library_application.generator;
 
-import com.example.library_application.entity.Admin;
 import com.example.library_application.entity.Book;
-import com.example.library_application.entity.LibraryController;
-import com.example.library_application.entity.Reader;
 
 import java.time.LocalDateTime;
 import java.time.Month;

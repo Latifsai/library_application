@@ -6,7 +6,6 @@ import com.example.library_application.service.util.Convertor;
 import com.example.library_application.dto.book.BookResponse;
 import com.example.library_application.dto.book.BookDTORequest;
 import com.example.library_application.errors.Message;
-import com.example.library_application.service.AllService;
 import com.example.library_application.validation.Validator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

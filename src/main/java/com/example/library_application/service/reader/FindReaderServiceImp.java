@@ -1,8 +1,6 @@
 package com.example.library_application.service.reader;
 
 import com.example.library_application.errors.exeptions.NotFoundException;
-import com.example.library_application.repositiry.ReaderRepository;
-import com.example.library_application.service.AllService;
 import com.example.library_application.dto.reader.FindReaderRequest;
 import com.example.library_application.dto.reader.ReaderResponse;
 import com.example.library_application.dto.reader.ReaderResponseForAdmin;

@@ -6,8 +6,6 @@ import com.example.library_application.dto.reader.ReaderRequest;
 import com.example.library_application.dto.reader.ResponseForUser;
 import com.example.library_application.errors.Message;
 import com.example.library_application.errors.exeptions.RightsException;
-import com.example.library_application.repositiry.ReaderRepository;
-import com.example.library_application.service.AllService;
 import com.example.library_application.validation.Validator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

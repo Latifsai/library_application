@@ -1,4 +1,4 @@
-package com.example.library_application.task1_srp.entity;
+package com.example.library_application.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -45,11 +45,11 @@ public class Agreement {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH})
     @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book book;
+    private com.example.library_application.task1_srp.entity.Book book;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH})
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private Account account;
+    private com.example.library_application.task1_srp.entity.Account account;
 
     @Override
     public boolean equals(Object o) {

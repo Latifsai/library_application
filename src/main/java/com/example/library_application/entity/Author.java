@@ -1,4 +1,4 @@
-package com.example.library_application.task1_srp.entity;
+package com.example.library_application.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,7 +41,7 @@ public class Author {
     private String language;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH,})
-    private List<Book> books;
+    private List<com.example.library_application.task1_srp.entity.Book> books;
 
     @Override
     public boolean equals(Object o) {
