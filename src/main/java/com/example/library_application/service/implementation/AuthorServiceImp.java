@@ -1,11 +1,11 @@
-package com.example.library_application.service.author;
+package com.example.library_application.service.implementation;
 
 import com.example.library_application.dto.author.AuthorResponse;
 import com.example.library_application.dto.author.CreateAuthorRequest;
 import com.example.library_application.dto.author.SearchByAuthorNameRequest;
 import com.example.library_application.entity.Author;
 import com.example.library_application.errors.exeptions.NotFoundException;
-import com.example.library_application.repositiry.AuthorRepository;
+import com.example.library_application.repository.AuthorRepository;
 import com.example.library_application.service.AuthorService;
 import com.example.library_application.service.util.AuthorUtil;
 import com.example.library_application.validation.ValidationMessage;
@@ -50,13 +50,17 @@ public class AuthorServiceImp implements AuthorService {
 
     @Override
     public AuthorResponse searchByAuthorName(SearchByAuthorNameRequest request) {
-        Author author = repository.findByNameAndSurname(request.getName(), request.getSurname())
-                .orElseThrow(() -> new NotFoundException(ValidationMessage.NOT_FOUND_AUTHOR_MESSAGE + request.getName() + " " + request.getSurname()));
+        Author author = findByName(request.getName(), request.getSurname());
         return util.convertToResponse(author);
     }
 
-    private Author findAuthorByID(UUID id) {
+    public Author findAuthorByID(UUID id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException(ValidationMessage.NOT_FOUND_AUTHOR_MESSAGE + id));
+    }
+
+    public Author findByName(String name, String surname) {
+        return repository.findByNameAndSurname(name, surname)
+                .orElseThrow(() -> new NotFoundException(ValidationMessage.NOT_FOUND_AUTHOR_MESSAGE + name + " " + surname));
     }
 }

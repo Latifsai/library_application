@@ -14,7 +14,7 @@
 //    private final GetService<GetAllBooksResponse> getAllBooksService;
 //    private final AllService<BookResponse, BookDTORequest> findBookService;
 //    private final AllService<BookResponse, BookDTORequest> removeBookService;
-//    private final AllService<UpdateBookDTOResponse, UpdateBookDTORequest> updateService;
+//    private final AllService<UpdateBookDTOResponse, UpdateBookRequest> updateService;
 //
 //    @PostMapping
 //    public ResponseEntity<BookResponse> addBook(@RequestBody AddBookRequest request) {
@@ -41,7 +41,7 @@
 //    }
 //
 //    @PutMapping
-//    public ResponseEntity<UpdateBookDTOResponse> updateBook(@RequestBody UpdateBookDTORequest request) {
+//    public ResponseEntity<UpdateBookDTOResponse> updateBook(@RequestBody UpdateBookRequest request) {
 //        UpdateBookDTOResponse response = updateService.execute(request);
 //        return new ResponseEntity<>(response, HttpStatus.UPGRADE_REQUIRED);
 //    }

@@ -1,4 +1,4 @@
-package com.example.library_application.service.author;
+package com.example.library_application.service.implementation;
 
 import com.example.library_application.dto.author.AuthorResponse;
 import com.example.library_application.dto.author.CreateAuthorRequest;
@@ -6,7 +6,7 @@ import com.example.library_application.dto.author.SearchByAuthorNameRequest;
 import com.example.library_application.entity.Author;
 import com.example.library_application.generator.DTOCreator;
 import com.example.library_application.generator.EntityCreator;
-import com.example.library_application.repositiry.AuthorRepository;
+import com.example.library_application.repository.AuthorRepository;
 import com.example.library_application.service.util.AuthorUtil;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -22,7 +22,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

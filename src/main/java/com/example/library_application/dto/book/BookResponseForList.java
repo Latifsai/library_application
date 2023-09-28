@@ -8,14 +8,12 @@ import java.util.UUID;
 
 @Value
 @Builder
-public class BookResponse {
+public class BookResponseForList {
     UUID id;
     String title;
-    String specialNumberOfBook;
     Integer pageAmount;
     String description;
     Integer yearOfRelease;
     BookStatus status;
     String frameOfBook;
-    String authorName;
 }

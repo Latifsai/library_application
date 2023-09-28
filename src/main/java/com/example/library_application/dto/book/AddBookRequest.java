@@ -1,27 +1,25 @@
 package com.example.library_application.dto.book;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
+import lombok.Value;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+import java.util.UUID;
+
+@Value
 public class AddBookRequest {
-    private String personalCode;
-    @NotNull(message = "Title must not be null!")
+
     @NotBlank(message = "Title must not be blank!")
-    @NotEmpty(message = "Title must not be empty!")
-    private String title;
-    @NotNull(message = "Author must not be null!")
-    @NotBlank(message = "Author must not be blank!")
-    @NotEmpty(message = "Author must not be empty!")
-    private String author;
-    @PositiveOrZero
-    private Integer pageAmount;
-    private String description;
+    String title;
+    @NotBlank(message = "author ID must not be null!")
+    UUID authorID;
+    @Positive(message = "pageAmount must positive!")
+    Integer pageAmount;
+    @NotBlank(message = "Description must not be blank!")
+    String description;
+    @Min(5) @Max(20)
+    Integer lengthOfNumber;
+    @Min(0) @Max(2023)
+    Integer yearOfRelease;
+    @NotBlank(message = "Frame of book must not be blank!")
+    String frameOfBook;
 }

@@ -1,4 +1,4 @@
-package com.example.library_application.repositiry;
+package com.example.library_application.repository;
 
 import com.example.library_application.entity.Author;
 import org.springframework.data.jpa.repository.JpaRepository;

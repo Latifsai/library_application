@@ -1,6 +1,6 @@
 package com.example.library_application.entity;
 
-import com.example.library_application.task1_srp.entity.enums.BookStatus;
+import com.example.library_application.entity.enums.BookStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class Book {
 
     @Column(name = "author")
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
     @Column(name = "page_amount")
@@ -43,7 +43,7 @@ public class Book {
     @Column(name = "description", nullable = false, length = 250)
     private String description;
 
-    @Column(name = "tear_of_realease")
+    @Column(name = "year_of_release")
     private Integer yearOfRelease;
 
     @Column(name = "status", nullable = false)
