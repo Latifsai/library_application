@@ -45,11 +45,11 @@ public class Agreement {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH})
     @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private com.example.library_application.task1_srp.entity.Book book;
+    private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH})
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private com.example.library_application.task1_srp.entity.Account account;
+    private Account account;
 
     @Override
     public boolean equals(Object o) {

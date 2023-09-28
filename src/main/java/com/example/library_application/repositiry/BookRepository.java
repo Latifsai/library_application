@@ -1,7 +1,7 @@
 package com.example.library_application.repositiry;
 
 import com.example.library_application.entity.Author;
-import com.example.library_application.task1_srp.entity.Book;
+import com.example.library_application.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

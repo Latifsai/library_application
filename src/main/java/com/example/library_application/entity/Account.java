@@ -58,7 +58,7 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private com.example.library_application.task1_srp.entity.Book books;
+    private Book books;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
     private List<Agreement> agreements;

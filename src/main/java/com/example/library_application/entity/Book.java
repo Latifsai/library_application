@@ -1,4 +1,4 @@
-package com.example.library_application.task1_srp.entity;
+package com.example.library_application.entity;
 
 import com.example.library_application.task1_srp.entity.enums.BookStatus;
 import jakarta.persistence.*;
@@ -35,7 +35,7 @@ public class Book {
     @Column(name = "author")
     @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private com.example.library_application.task1_srp.entity.Author author;
+    private Author author;
 
     @Column(name = "page_amount")
     private Integer pageAmount;
