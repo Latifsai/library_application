@@ -1,10 +1,11 @@
 package com.example.library_application.controller;
 
-import com.example.library_application.errors.exeptions.BookTakeException;
-import com.example.library_application.errors.exeptions.NotFoundException;
-import com.example.library_application.errors.exeptions.RightsException;
-import com.example.library_application.errors.CoreError;
-import com.example.library_application.errors.CoreResponse;
+import com.example.library_application.validation.exeptions.AlreadyExistException;
+import com.example.library_application.validation.exeptions.BookTakeException;
+import com.example.library_application.validation.exeptions.NotFoundException;
+import com.example.library_application.validation.exeptions.RightsException;
+import com.example.library_application.validation.errors.CoreError;
+import com.example.library_application.validation.errors.CoreResponse;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
@@ -61,4 +62,19 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(com.example.library_application.validation.exeptions.ValidationException.class)
+    public ResponseEntity<?> handleException(com.example.library_application.validation.exeptions.ValidationException e) {
+        List<CoreError> errors = List.of(new CoreError(e.getMessage()));
+        CoreResponse response = new CoreResponse(errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AlreadyExistException.class)
+    public ResponseEntity<?> handleException(AlreadyExistException e) {
+        List<CoreError> errors = List.of(new CoreError(e.getMessage()));
+        CoreResponse response = new CoreResponse(errors);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }

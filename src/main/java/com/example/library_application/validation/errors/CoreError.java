@@ -1,4 +1,4 @@
-package com.example.library_application.errors;
+package com.example.library_application.validation.errors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

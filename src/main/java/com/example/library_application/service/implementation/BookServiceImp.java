@@ -1,12 +1,13 @@
 package com.example.library_application.service.implementation;
 
+import com.example.library_application.dto.author.SearchByAuthorNameRequest;
 import com.example.library_application.dto.book.AddBookRequest;
 import com.example.library_application.dto.book.BookResponse;
 import com.example.library_application.dto.book.GetBooksBelongsAuthorResponse;
 import com.example.library_application.dto.book.UpdateBookRequest;
 import com.example.library_application.entity.Author;
 import com.example.library_application.entity.Book;
-import com.example.library_application.errors.exeptions.NotFoundException;
+import com.example.library_application.validation.exeptions.NotFoundException;
 import com.example.library_application.repository.BookRepository;
 import com.example.library_application.service.BookService;
 import com.example.library_application.service.util.BookUtil;
@@ -24,6 +25,7 @@ public class BookServiceImp implements BookService {
     private final BookUtil util;
     private final AuthorServiceImp authorServiceImp;
     private final BookRepository repository;
+
     @Override
     public BookResponse addBook(AddBookRequest request) {
         Book book = util.createBook(request,authorServiceImp.findAuthorByID(request.getAuthorID()));
@@ -61,8 +63,8 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
-    public GetBooksBelongsAuthorResponse getAllBooksBelongsAuthor(String name, String surname) {
-        Author author = authorServiceImp.findByName(name, surname);
+    public GetBooksBelongsAuthorResponse getAllBooksBelongsAuthor(SearchByAuthorNameRequest request) {
+        Author author = authorServiceImp.findByName(request.getName(), request.getSurname());
         List<Book> list = repository.findAllByAuthor(author);
         return util.getResponseBelongAuthor(author, list);
     }

@@ -4,7 +4,7 @@ import com.example.library_application.dto.author.AuthorResponse;
 import com.example.library_application.dto.author.CreateAuthorRequest;
 import com.example.library_application.dto.author.SearchByAuthorNameRequest;
 import com.example.library_application.entity.Author;
-import com.example.library_application.errors.exeptions.NotFoundException;
+import com.example.library_application.validation.exeptions.NotFoundException;
 import com.example.library_application.repository.AuthorRepository;
 import com.example.library_application.service.AuthorService;
 import com.example.library_application.service.util.AuthorUtil;

@@ -10,7 +10,7 @@ public class AddBookRequest {
 
     @NotBlank(message = "Title must not be blank!")
     String title;
-    @NotBlank(message = "author ID must not be null!")
+    @NotNull(message = "author ID must not be null!")
     UUID authorID;
     @Positive(message = "pageAmount must positive!")
     Integer pageAmount;

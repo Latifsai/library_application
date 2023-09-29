@@ -1,5 +1,6 @@
 package com.example.library_application.service;
 
+import com.example.library_application.dto.author.SearchByAuthorNameRequest;
 import com.example.library_application.dto.book.AddBookRequest;
 import com.example.library_application.dto.book.BookResponse;
 import com.example.library_application.dto.book.GetBooksBelongsAuthorResponse;
@@ -14,5 +15,5 @@ public interface BookService {
     BookResponse updateBook(UpdateBookRequest request);
     BookResponse findByTitle(String title);
     List<BookResponse> getAllBooks();
-    GetBooksBelongsAuthorResponse getAllBooksBelongsAuthor(String name, String surname);
+    GetBooksBelongsAuthorResponse getAllBooksBelongsAuthor(SearchByAuthorNameRequest request);
 }

@@ -1,7 +1,6 @@
 package com.example.library_application.entity;
 
-import com.example.library_application.entity.Agreement;
-import com.example.library_application.task1_srp.entity.enums.DocumentType;
+import com.example.library_application.entity.enums.DocumentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -56,9 +55,9 @@ public class Account {
     @Column(name = "date_of_update", nullable = false)
     private Timestamp dateOfUpdate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+    @OneToMany(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book books;
+    private List<Book> books;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
     private List<Agreement> agreements;
