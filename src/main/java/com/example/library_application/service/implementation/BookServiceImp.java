@@ -7,13 +7,14 @@ import com.example.library_application.dto.book.GetBooksBelongsAuthorResponse;
 import com.example.library_application.dto.book.UpdateBookRequest;
 import com.example.library_application.entity.Author;
 import com.example.library_application.entity.Book;
-import com.example.library_application.validation.exeptions.NotFoundException;
 import com.example.library_application.repository.BookRepository;
 import com.example.library_application.service.BookService;
 import com.example.library_application.service.util.BookUtil;
 import com.example.library_application.validation.ValidationMessage;
+import com.example.library_application.validation.exeptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,6 +35,7 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public BookResponse findBookByID(UUID id) {
         Book book = searchByID(id);
         return util.getResponse(book);
@@ -48,6 +50,7 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public BookResponse findByTitle(String title) {
         Book book = repository.findByTitle(title)
                 .orElseThrow(() -> new NotFoundException(ValidationMessage.NOT_FOUND_BOOK_MESSAGE + title));
@@ -56,6 +59,7 @@ public class BookServiceImp implements BookService {
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<BookResponse> getAllBooks() {
         return repository.findAll().stream()
                 .map(util::getResponse)
@@ -72,5 +76,10 @@ public class BookServiceImp implements BookService {
     private Book searchByID(UUID id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException(ValidationMessage.NOT_FOUND_BOOK_MESSAGE + id));
+    }
+
+    public Book findBookByTitle(String title) {
+        return repository.findByTitle(title)
+                .orElseThrow(() -> new NotFoundException(ValidationMessage.NOT_FOUND_BOOK_MESSAGE + title));
     }
 }

@@ -1,5 +1,6 @@
 package com.example.library_application.entity;
 
+import com.example.library_application.entity.enums.AgreementStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,9 @@ public class Agreement {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "number_of_agreement", nullable = false, unique = true)
+    private String numberOfAgreement;
+
     @Column(name = "opening_date",nullable = false)
     private Timestamp openingDate;
 
@@ -37,11 +41,12 @@ public class Agreement {
     @Column(name = "term_months", nullable = false)
     private Integer termMonths;
 
-    @Column(name = "number_of_agreement", nullable = false, unique = true)
-    private String numberOfAgreement;
-
     @Column(name = "manager_number", nullable = false)
     private String managerNumber;
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AgreementStatus status;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH})
     @JoinColumn(name = "book_id", referencedColumnName = "id")
@@ -56,7 +61,14 @@ public class Agreement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Agreement agreement = (Agreement) o;
-        return Objects.equals(id, agreement.id) && Objects.equals(openingDate, agreement.openingDate) && Objects.equals(returningDate, agreement.returningDate) && Objects.equals(updateDate, agreement.updateDate) && Objects.equals(termMonths, agreement.termMonths) && Objects.equals(numberOfAgreement, agreement.numberOfAgreement) && Objects.equals(managerNumber, agreement.managerNumber) && Objects.equals(book, agreement.book) && Objects.equals(account, agreement.account);
+        return Objects.equals(id, agreement.id) && Objects.equals(openingDate, agreement.openingDate)
+                && Objects.equals(returningDate, agreement.returningDate)
+                && Objects.equals(updateDate, agreement.updateDate)
+                && Objects.equals(termMonths, agreement.termMonths)
+                && Objects.equals(numberOfAgreement, agreement.numberOfAgreement)
+                && Objects.equals(managerNumber, agreement.managerNumber)
+                && Objects.equals(book, agreement.book)
+                && Objects.equals(account, agreement.account);
     }
 
     @Override

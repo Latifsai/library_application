@@ -1,7 +1,7 @@
 package com.example.library_application.controller;
 
 import com.example.library_application.validation.exeptions.AlreadyExistException;
-import com.example.library_application.validation.exeptions.BookTakeException;
+import com.example.library_application.validation.exeptions.BookTakingException;
 import com.example.library_application.validation.exeptions.NotFoundException;
 import com.example.library_application.validation.exeptions.RightsException;
 import com.example.library_application.validation.errors.CoreError;
@@ -46,8 +46,8 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(BookTakeException.class)
-    public ResponseEntity<?> handleException(BookTakeException e) {
+    @ExceptionHandler(BookTakingException.class)
+    public ResponseEntity<?> handleException(BookTakingException e) {
         List<CoreError> errors = List.of(new CoreError(e.getMessage()));
         CoreResponse response = new CoreResponse(errors);
 

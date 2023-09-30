@@ -85,6 +85,7 @@ public class AccountUtil {
     private boolean checkStringCriteria(String criteria){
         return !criteria.trim().isEmpty() && criteria != null;
     }
+
     public Account updateAccount(UpdateAccountRequest request, Account account, List<Account> list) {
         if (checkStringCriteria(request.getUsername()) && checkUniqueUsername(request.getUsername(), list)) {
             account.setUsername(request.getUsername());
@@ -97,6 +98,7 @@ public class AccountUtil {
         if (checkStringCriteria(request.getAddress())) account.setAddress(request.getAddress());
         if (checkStringCriteria(request.getPhoneNumber())) account.setPhoneNumber(request.getPhoneNumber());
         if (request.getDocumentType() != null) account.setDocumentType(request.getDocumentType());
+        account.setDateOfUpdate(Timestamp.valueOf(LocalDateTime.now()));
         return account;
     }
 
