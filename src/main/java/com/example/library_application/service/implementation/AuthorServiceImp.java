@@ -22,7 +22,6 @@ public class AuthorServiceImp implements AuthorService {
     private final AuthorUtil util;
     private final AuthorRepository repository;
 
-
     @Override
     public AuthorResponse addAuthor(CreateAuthorRequest request) {
         Author author = util.createAuthorFromRequest(request);

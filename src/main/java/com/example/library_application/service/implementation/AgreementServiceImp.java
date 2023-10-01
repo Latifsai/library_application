@@ -77,6 +77,7 @@ public class AgreementServiceImp implements AgreementService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<AgreementResponse> getAllAgreementsByStatus(AgreementStatus status) {
         return repository.findAllByStatus(status).stream()
                 .map(util::convertToResponse)

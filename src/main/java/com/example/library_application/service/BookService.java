@@ -16,4 +16,5 @@ public interface BookService {
     BookResponse findByTitle(String title);
     List<BookResponse> getAllBooks();
     GetBooksBelongsAuthorResponse getAllBooksBelongsAuthor(SearchByAuthorNameRequest request);
+    void deleteBook(String title);
 }

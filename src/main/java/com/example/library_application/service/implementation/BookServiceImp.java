@@ -29,7 +29,7 @@ public class BookServiceImp implements BookService {
 
     @Override
     public BookResponse addBook(AddBookRequest request) {
-        Book book = util.createBook(request,authorServiceImp.findAuthorByID(request.getAuthorID()));
+        Book book = util.createBook(request, authorServiceImp.findAuthorByID(request.getAuthorID()));
         repository.save(book);
         return util.getResponse(book);
     }
@@ -57,7 +57,6 @@ public class BookServiceImp implements BookService {
         return util.getResponse(book);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<BookResponse> getAllBooks() {
@@ -67,10 +66,17 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public GetBooksBelongsAuthorResponse getAllBooksBelongsAuthor(SearchByAuthorNameRequest request) {
         Author author = authorServiceImp.findByName(request.getName(), request.getSurname());
         List<Book> list = repository.findAllByAuthor(author);
         return util.getResponseBelongAuthor(author, list);
+    }
+
+    @Override
+    public void deleteBook(String title) {
+        Book book = findBookByTitle(title);
+        repository.delete(book);
     }
 
     private Book searchByID(UUID id) {

@@ -1,13 +1,9 @@
 package com.example.library_application.controller;
 
-import com.example.library_application.validation.exeptions.AlreadyExistException;
-import com.example.library_application.validation.exeptions.BookTakingException;
-import com.example.library_application.validation.exeptions.NotFoundException;
-import com.example.library_application.validation.exeptions.RightsException;
+import com.example.library_application.validation.exeptions.*;
 import com.example.library_application.validation.errors.CoreError;
 import com.example.library_application.validation.errors.CoreResponse;
 import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,15 +33,6 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-
-    @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<?> handleException(ValidationException e) {
-        List<CoreError> errors = List.of(new CoreError(e.getMessage()));
-        CoreResponse response = new CoreResponse(errors);
-
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(BookTakingException.class)
     public ResponseEntity<?> handleException(BookTakingException e) {
         List<CoreError> errors = List.of(new CoreError(e.getMessage()));
@@ -62,7 +49,7 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(com.example.library_application.validation.exeptions.ValidationException.class)
+    @ExceptionHandler(ValidationException.class)
     public ResponseEntity<?> handleException(com.example.library_application.validation.exeptions.ValidationException e) {
         List<CoreError> errors = List.of(new CoreError(e.getMessage()));
         CoreResponse response = new CoreResponse(errors);
